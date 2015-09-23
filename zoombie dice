@@ -1,0 +1,205 @@
+package CLASSWORK;
+import java.util.*;
+
+public class zoombieassgn { 
+
+	public static void main(String[]args){
+		System.out.println("Welcom to zoombie dice");    
+		Scanner in=new Scanner(System.in);   
+		 System.out.println("Tip:Eat Brains && dont get shotgunned"); 
+		 players(); // recalling game method  
+		
+	}
+	
+	//@ aneesh
+	 public static int[][] game(){ // method to play the dice with returning value  
+		 int shotgnscore=0; // shortgun score tracker
+		 
+String Red[]={"Shotgun","Shotgun","Shotgun","Footprint","Footprint","Brain"}; // red dice array
+String Green[]={"Shotgun","Footprint","Footprint","Brain","Brain","Brain"};
+String Yellow[]={"Shotgun","Shotgun","Footprint","Footprint","Brain","Brain"};
+Random rand= new Random();
+int x=rand.nextInt(Red.length);//red array (random index value it selects)
+int y=rand.nextInt(Green.length);//green array
+int z=rand.nextInt(Yellow.length);//yellow array
+
+
+System.out.println("**************");
+System.out.println("Dice 1:" +Red[x]);
+System.out.println("Dice 2:" +Green[y]);
+System.out.println("Dice 3:" +Yellow[z]);
+System.out.println("****************");
+int brainscore=0;// brainscore tracker
+
+
+
+
+//counting brain section  //
+	
+
+if(((Red[x]=="Brain" && Red[x]!=Green[y] && Red[x]!=Yellow[z])) || ((Green[y]=="Brain" && Green[y]!=Yellow[z] && Green[y]!=Red[x])) ||((Yellow[z]=="Brain" &&Yellow[z]!=Red[x] &&Yellow[z]!=Green[y]))){
+	brainscore+=1;
+}
+
+if((Red[x]=="Brain" && Green[y]=="Brain" )&& ((Red[x]!=Yellow[z]))||((Red[x]=="Brain" && Yellow[z]=="Brain" )&& (Red[x]!=Green[y]))||((Green[y]=="Brain" && Yellow[z]=="Brain") && (Green[y]!=Red[x]))){
+	brainscore+=2;
+}
+if(Red[x]=="Brain" && Green[y]=="Brain" && Yellow[z]=="Brain"){
+	brainscore+=3;
+}
+// count shotgun section
+
+if(((Red[x]=="Shotgun" && Red[x]!=Green[y] && Red[x]!=Yellow[z])) || ((Green[y]=="Shotgun" && Green[y]!=Yellow[z] && Green[y]!=Red[x])) ||((Yellow[z]=="Shotgun" &&Yellow[z]!=Red[x] &&Yellow[z]!=Green[y]))){
+	shotgnscore+=1;
+}
+
+if((Red[x]=="Shotgun" && Green[y]=="Shotgun" )&& ((Red[x]!=Yellow[z]))||((Red[x]=="Shotgun" && Yellow[z]=="Shotgun" )&& (Red[x]!=Green[y]))||((Green[y]=="Shotgun" && Yellow[z]=="Shotgun") && (Green[y]!=Red[x]))){
+	shotgnscore+=2;
+}
+if(Red[x]=="Shotgun" && Green[y]=="Shotgun" && Yellow[z]=="Shotgun"){ //use brackets
+	System.out.println("Game over");
+shotgnscore+=3;
+}
+//if(shotgnscore>=3){
+	
+	//System.out.println("Third shotgun!! Game over");
+	
+//}
+
+//foot print section
+
+int footscore=0;
+if(((Red[x]=="Footprint" && Red[x]!=Green[y] && Red[x]!=Yellow[z])) || ((Green[y]=="Footprint" && Green[y]!=Yellow[z] && Green[y]!=Red[x])) ||((Yellow[z]=="Footprint" &&Yellow[z]!=Red[x] &&Yellow[z]!=Green[y]))){
+	footscore+=1;
+}
+
+if((Red[x]=="Footprint" && Green[y]=="Footprint" )&& ((Red[x]!=Yellow[z]))||((Red[x]=="Footprint" && Yellow[z]=="Footprint" )&& (Red[x]!=Green[y]))||((Green[y]=="Footprint" && Yellow[z]=="Footprint") && (Green[y]!=Red[x]))){
+	footscore+=2;
+}
+if(Red[x]=="Footprint" && Green[y]=="Footprint" && Yellow[z]=="Footprint"){ //use brackets
+	System.out.println("Lucky !!You Escaped");
+footscore+=3;
+}
+ //System.out.println("Brains you ate:"+brainscore);
+ //System.out.println("Shotgun:" +shotgnscore);
+ //System.out.println("Footprint:" +footscore);
+		 
+//footprint re-rolling
+//if(footscore>=0){
+	
+	//System.out.println("Do you want to roll or stop");
+	
+	
+//}
+int skeeper[][] = new int[2][1]; // array for returning brainscore & shotgunscore
+
+		skeeper[0][0]=brainscore; // brainscore keeper
+	skeeper [1][0]=shotgnscore; // shortgunscore keeper
+
+return skeeper;
+
+
+
+
+
+
+
+
+ }
+	
+	 
+// taking in multiple players
+	 
+public static void players(){
+	int x;
+	boolean play=true;
+	Scanner in=new Scanner(System.in);
+	System.out.println("Enter Amount of players:");     //@ keerthana
+	x=in.nextInt();
+	in.nextLine(); // to avoid buffer advised by eoin in lab
+	String names[]=new String[x]; //x takes in number of players and creates array
+	System.out.println("Enter the players name:");
+	
+	//@aneesh 
+	
+	int totalBrain[] = new int[names.length]; //this is the array when player switches stores brain score for next turn
+	for(int i=0;i<names.length;i++){
+		names[i]=in.nextLine();
+		totalBrain[i]=0;// giving a 0 value start 
+		
+		
+	}
+
+	int brainscore[][]=new int[names.length][2];// array made for brainscore track
+	
+
+	System.out.println("----------");
+	System.out.println("Press 1 to Roll ");
+	System.out.println("Press 2 to Pass & Score Brain");
+	System.out.println("Press 3 to exit ");
+	
+	
+		//@ aneesh
+	while (play = true){ // boolean to keep the game on
+		int tscore[][]= new int[2][1];// total score for brains
+		tscore[0][0]=0; 
+		tscore[1][0]=0;
+	for(int i = 0; i < names.length; i++){
+		int sscore=0; // shortgun score more than 3 end user turn
+		int bscore=0; // brain score >=15 player wins
+		
+		
+			System.out.println("----------");
+			System.out.println("It's " + names[i]+"'s turn");
+		
+		
+			for(int j = 0; j < 100; j++){ // j will be total no of turns  i.e can roll 100 times dice in total
+				
+				
+				int selection=in.nextInt(); // takes in 1 ,2 or3 to proceed
+				if(selection==1){	
+					tscore=game();	
+					bscore=0;
+					bscore+=tscore[0][0];
+					sscore+=tscore[1][0];
+					
+					//System.out.println(bscore);// adds brainscore 
+					//System.out.println(sscore);
+					//bscore += totalBrain[i];
+					totalBrain[i] += bscore;
+					
+					System.out.println("Total brains:" +totalBrain[i]);
+					System.out.println("Total Shotgunss :" + sscore);
+					if(sscore>=3){ // shortgunscore
+						System.out.println("Player  " +names[i] +" Game over");
+						totalBrain[i]=0;
+						break; // break here switches the player breaking inner loop
+					}
+					
+					
+				}
+				if(selection==2){
+					System.out.println("Player " +names[i] +" :" + totalBrain[i] + " Brains");
+					System.out.println("Player  " +names[i] +":  " + sscore + "  Shotguns");
+					
+					break; // passes by breaking inner loop
+				
+				}
+				else if(selection==3){
+					System.exit(0); // exits the game
+			}
+				if(totalBrain[i]>=13){ // winning logic
+					System.out.println("Player " +names[i] +" Wins for eating 15 Brains" );
+				}
+				
+				
+			
+}
+	
+	
+}
+	
+}
+}
+
+}
