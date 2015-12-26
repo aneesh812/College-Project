@@ -1,0 +1,220 @@
+/*NAME-ANEESH KOHLI
+ * Student number-2880174
+ */
+package Y2ASSIGN;
+import java.util.*;
+public class Assignment9_2015{
+	public static void main(String args[]){
+	TreeSet<String> setA= new TreeSet<String>();
+	setA.add("alpha");
+	setA.add("beta");
+	setA.add("gamma");
+	
+	TreeSet<String>setB=new TreeSet<String>();
+	setB.add("axa");
+	setB.add("beta");
+	setB.add("romeo");
+	
+	TreeSet<String>setC=new TreeSet<String>();
+	setC.add("axa");
+	setC.add("beta");
+	setC.add("gamma");
+	
+	
+	System.out.println(setA);
+	
+	
+	System.out.println(setB);
+	
+	
+	System.out.println(setC);
+	TreeSet<String>inAB=new TreeSet<String>(setA);
+	inAB.retainAll(setB);
+	System.out.println("setA & setB intersection :" + inAB);
+	TreeSet<String>unAB=new TreeSet<String>(setB);
+	unAB.addAll(setC);
+	System.out.println("Union of setB & setC :" + unAB);
+	TreeSet<String>unAC=new TreeSet<String>(setB);
+    unAC.removeAll(setC);
+    System.out.println("set difference of setB & setC :" + unAC);
+    
+    System.out.println(unAB.containsAll(setC));
+    
+    inAB.retainAll(setC);
+    System.out.println("Intersection of setA & setB & setC :" +inAB);
+    
+    unAB.addAll(setA);
+    System.out.println("union of setA,setB,setC : " + unAB);
+    
+    TreeSet<String>diAB=new TreeSet<String>(setA);
+    diAB.removeAll(setB);
+    
+    System.out.println("set difference of setA & setB :" + diAB);
+    
+    TreeSet<String>diBA=new TreeSet<String>(setB);
+    diAB.removeAll(setA);
+   
+    System.out.println("set difference of setB & setA :" + diBA);
+    
+    System.out.println("-----------Q.2---------------");
+    
+    
+    TreeSet<Player>playersA=new TreeSet<Player>();
+    playersA.add(new Player("MESSI",9));
+    playersA.add(new Player("RONALDO",7));
+    playersA.add(new Player("AGUERO",4));
+    
+    TreeSet<Player>playersB=new TreeSet<Player>();
+    playersB.add(new Player("BECKHAM",8));
+    playersB.add(new Player("ROONEY",5));
+    playersB.add(new Player("ROBIN",8));
+    
+    TreeSet<Player>playersC=new TreeSet<Player>();
+    playersC.add(new Player("NEYMAR",7));
+    playersC.add(new Player("COSTA",3));
+    playersC.add(new Player("FABREGAS",5));
+    
+    
+    
+    System.out.println("SET A :" + playersA.toString());
+    System.out.println("SET B :" + playersB.toString());
+    System.out.println("SET C :" + playersC.toString());
+    int sumA=0;
+    int sumB=0;
+    int sumC=0;
+ //Object[]set=players.toArray();
+ 
+ 
+ for(Player x :playersA) {
+
+	 if(x.played()>5){
+		 System.out.println("Players who played more than 5 games :" +x.name());
+	 }
+	sumA+=x.played();
+	
+ }
+ 
+ for(Player y :playersB) {
+
+	 if(y.played()>5){
+		 System.out.println("Players who played more than 5 games :" +y.name());
+	 }
+	sumB+=y.played();
+	
+ }
+ 
+ 
+ for(Player z :playersC) {
+
+	 if(z.played()>5){
+		 System.out.println("Players who played more than 5 games :" +z.name());
+	 }
+	sumC+=z.played();
+	
+ }
+ //System.out.println("Total number of games played by all players in A : " +sumA);
+// System.out.println("Total number of games played by all players in B: " +sumB);
+// System.out.println("Total number of games played by all players in C: " +sumC);
+ System.out.println("Total games played by all players :" + (sumA + sumB + sumC));
+ 
+ System.out.println("---------HashSet---------");
+ 
+ 
+ 
+ 
+// System.out.println(players.contains(new Player("MESSI",8)));
+ 
+ int sumhA=0;
+ int sumhB=0;
+ int sumhC=0;
+ 
+ HashSet<Player>playersH=new HashSet<Player>();
+ playersH.add(new Player("MESSI",9));
+ playersH.add(new Player("RONALDO",7));
+ playersH.add(new Player("AGUERO",4));
+
+ HashSet<Player>playersG=new HashSet<Player>();
+ playersH.add(new Player("Beckham",8));
+ playersH.add(new Player("ROONEY",5));
+ playersH.add(new Player("ROBIN",8));
+ 
+ HashSet<Player>playersK=new HashSet<Player>();
+ playersH.add(new Player("NEYMAR",7));
+ playersH.add(new Player("COSTA",3));
+ playersH.add(new Player("FABREGAS",5));
+ 
+ 
+
+ 
+ for(Player a :playersH) {
+
+	 if(a.played()>5){
+		 System.out.println("Players who played more than 5 games :" +a.name());
+	 }
+	sumhA+=a.played();
+	
+
+	
+ }
+ 
+ 
+ for(Player b :playersG) {
+
+	 if(b.played()>5){
+		 System.out.println("Players who played more than 5 games :" +b.name());
+	 }
+sumhB+=b.played();
+	
+ }
+ for(Player c :playersK) {
+
+	 if(c.played()>5){
+		 System.out.println("Players who played more than 5 games :" +c.name());
+	 }
+	sumhC+=c.played();
+	
+ }
+ 
+
+ System.out.println("Total number of games played by all players : " +(sumhA+sumhB+sumhC));
+ 
+ 
+ 
+ 
+ 
+ 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+	
+	
+	}
+}
+final class Player implements Comparable<Player>{
+	private final String name;
+  private final int played;
+	Player(String n, int p){name = n; played = p;}
+	public String name(){return name;}
+  public int played(){return played;}
+	public String toString(){return name+" "+played;}
+	public boolean equals(Object ob){
+		if(!(ob instanceof Player)) return false;
+		Player p = (Player)ob;
+		return name.equals(p.name);
+	}
+	public int compareTo(Player p){
+		if(p == null) return -1;
+		return name.compareTo(p.name);
+	}
+	public int hashCode(){
+    return 41*name.hashCode();
+  }
+}
