@@ -1,0 +1,26 @@
+html{
+
+	background-image: url('../image/taj.jpg') ;
+	background-size: 100% 100%;
+	max-width:1024px no-repeat;
+	min-height: 100%;
+	margin: 0 auto;
+}
+
+body{
+	text-align: center;
+}
+
+#btn-enter{
+margin:auto 0;
+background: transparent;
+font-weight: 600;
+}
+
+h3{
+	margin-top: 30%;
+	color: white;
+	font-weight: 200;	
+
+	
+}
